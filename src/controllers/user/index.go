@@ -1,4 +1,4 @@
-package album
+package user
 
 import (
 	"app/src/services"
