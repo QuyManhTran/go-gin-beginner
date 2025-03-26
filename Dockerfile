@@ -1,4 +1,6 @@
-FROM golang:1.24.1-alpine3.21 as builder
+FROM golang:1.24.1-alpine3.21 as base
+
+FROM base as development
 
 WORKDIR /app
 
@@ -12,10 +14,10 @@ COPY . .
 
 RUN CGO_ENABLED=1 go build -o main .
 
-FROM golang:1.24.1-alpine3.21 as production
+FROM base as production
 
 WORKDIR /app
 
-COPY --from=builder /app/main .
+COPY --from=development /app/main .
 
 CMD ["./main"]
