@@ -6,3 +6,8 @@ type Claims struct {
 	ID string `json:"id"`
 	jwt.RegisteredClaims
 }
+
+type Public struct {
+	Path string
+	Method string
+}

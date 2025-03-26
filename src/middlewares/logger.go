@@ -12,10 +12,9 @@ func Logger() gin.HandlerFunc {
 		t := time.Now()
 		c.Set("example", "12345")
 		c.Next()
-		latency := time.Since(t)
 		log.SetPrefix("[Logger] ")
-		log.Print(latency)
+		latency := time.Since(t)
 		status, method := c.Writer.Status(), c.Request.Method
-		log.Println(method, status)
+		log.Println(method, status, latency)
 	}
 }

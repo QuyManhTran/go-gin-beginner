@@ -2,7 +2,6 @@ package utils
 
 import (
 	"app/src/types"
-	"log"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -25,7 +24,6 @@ func GenerateJwtToken(id, secret string) (string, error){
 func ValidateJwtToken(token, secret string) (*types.Claims, error){
 	claims := &types.Claims{}
 	_, err := jwt.ParseWithClaims(token, claims, func(token *jwt.Token) (interface{}, error){
-		log.Println(token.Claims)
 		return []byte(secret), nil
 	})
 	return claims, err
